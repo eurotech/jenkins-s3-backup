@@ -1,0 +1,25 @@
+# Jenkins Backup Script
+
+## Jenkins Folders
+
+- jobs
+  - copy recursively the config.xml, nextBuildNumber and jobs subfolder
+  - nextBuildNumber is not present if the node if a Folder
+  - the jobs folder is not present if the node is not a Folder
+- secrets
+  - save all except the master.key (this should be seeded differently)
+- users
+- nodes
+- plugins
+- configs
+  - all the XML stored at top level are prbably configs ... save them
+
+If we are not interest in a particular category it should be possible to exclude it.
+
+## Compression
+
+We will use parallel `xz` compression.
+
+## S3 Storage
+
+We just just `aws s3 mv` the file to S3.
